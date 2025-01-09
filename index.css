@@ -60,3 +60,18 @@
 .filter-btn {
   margin: 10px 0px;
 }
+
+.shimmer-container {
+  display: flex;
+  flex-wrap: wrap;
+  /* flex-direction: column; */
+  gap: 10px;
+}
+
+.shimmer-card {
+  width: 200px;
+  height: 401px;
+  padding: 5px;
+  margin: 45px 0px 0px;
+  background-color: #f0f0f0;
+}
