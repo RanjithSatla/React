@@ -3,3 +3,6 @@ export const MEDIA_ASSETS_URL =
 
 export const LOGO_URL =
   "https://th.bing.com/th/id/OIG1.NwEgRhaBdqbm6ZYD57oJ?pid=ImgGn";
+
+export const MENU_URL =
+  "https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=19.014238846337&lng=73.11294313520193&restaurantId=";
