@@ -4,37 +4,44 @@ class UserClass extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      count: 0,
-      count2: 0,
+      user: {
+        name: "dummy",
+        location: "dummy",
+      },
     };
     console.log(this.props.name + "Child Constructor");
   }
 
-  componentDidMount() {
+  async componentDidMount() {
     console.log(this.props.name + "Child ComponentDidMount");
+    const data = await fetch("https://api.github.com/users/ranjith");
+    const response = await data.json();
+    this.setState({ user: response });
+  }
+
+  componentDidUpdate() {
+    console.log(this.props.name + "Child ComponentDidUpdate");
+    // Reference setInterval with this. this is shared between all lifecycle methods
+    this.timer = setInterval(() => {
+      console.log("Interval");
+    }, 1000);
+  }
+
+  componentWillUnmount() {
+    console.log(this.props.name + "Child ComponentWillUnmount");
+    clearInterval(this.timer);
   }
 
   render() {
-    const { location } = this.props;
+    const { name, location } = this.state.user;
+    // const { location } = this.props;
     console.log(this.props.name + "Child Render");
 
     return (
       <div className="usercard">
-        <h2>Name : {this.props.name}</h2>
+        <h2>Name : {name}</h2>
         <h3>Location : {location}</h3>
         <h4>Contact : @ranjithsatla327</h4>
-        <h4>Count : {this.state.count}</h4>
-        <h4>Count2:{this.state.count2}</h4>
-        <button
-          onClick={() => {
-            this.setState({
-              count: this.state.count + 1,
-              count2: this.state.count2 + 2,
-            });
-          }}
-        >
-          Inc Count
-        </button>
       </div>
     );
   }
