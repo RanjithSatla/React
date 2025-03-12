@@ -14,6 +14,12 @@ const RestaurantMenu = () => {
   useEffect(() => {
     console.log("b1");
     fetchMenu();
+    const timer = setInterval(() => {
+      console.log("Interval");
+    }, 1000);
+    return () => {
+      clearInterval(timer);
+    };
   }, []);
 
   const fetchMenu = async () => {
