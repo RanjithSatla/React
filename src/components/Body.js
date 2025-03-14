@@ -3,6 +3,7 @@ import { useState, useEffect, use } from "react";
 import Shimmer from "./Shimmer";
 import { Link } from "react-router-dom";
 import useOnlineStatus from "../utils/useOnlineStatus";
+import { RESTAURANT_LIST_URL } from "../utils/constants";
 
 const Body = () => {
   const [listOfRestaurants, setListOfRestaurants] = useState([]);
@@ -16,9 +17,7 @@ const Body = () => {
   const onlineStatus = useOnlineStatus();
 
   const fetchData = async () => {
-    const data = await fetch(
-      "https://www.swiggy.com/dapi/restaurants/list/v5?lat=12.9715987&lng=77.5945627&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
-    );
+    const data = await fetch(RESTAURANT_LIST_URL);
     const json = await data.json();
     console.log(json);
 
@@ -48,18 +47,18 @@ const Body = () => {
   }
   return (
     <div className="body">
-      <div className="filter">
+      <div className="filter flex">
         <div className="search">
           <input
             type="text"
-            className="search-box"
+            className="border ml-4"
             value={searchText}
             onChange={(e) => {
               setSearchText(e.target.value);
             }}
           ></input>
           <button
-            className="search-btn"
+            className="px-4 py-1 bg-green-200 m-4 rounded-lg cursor-pointer"
             onClick={() => {
               console.log(searchText);
 
@@ -90,7 +89,7 @@ const Body = () => {
 
         <div>
           <button
-            className="filter-btn"
+            className="px-4 py-1 bg-green-100 m-4 rounded-lg cursor-pointer"
             onClick={() => {
               console.log("Filter button clicked");
               const filteredRestaurants = listOfRestaurants.filter(
@@ -106,7 +105,7 @@ const Body = () => {
           </button>
         </div>
       </div>
-      <div className="res-container">
+      <div className="res-container flex flex-wrap">
         {filteredRestaurants.map((restaurant) => {
           return (
             <Link

@@ -14,14 +14,14 @@ const Header = () => {
     console.log("Use Effect Called");
   }, []);
   return (
-    <div className="header">
-      <div className="logo-container">
+    <div className="flex justify-between p-4 m-4 bg-gray-200">
+      <div className="w-20">
         <div className="logo">
           <img src={LOGO_URL}></img>
         </div>
       </div>
-      <div className="nav-items">
-        <ul>
+      <div className="flex gap-1 items-center">
+        <ul className="flex gap-4">
           <li>Online Status : {onlineStatus ? "💚" : "💔"}</li>
           <li>
             {" "}
@@ -32,9 +32,9 @@ const Header = () => {
           </li>
           <li>
             <Link to="/contact">Contact Us </Link>
-            <li>
-              <Link to="/grocery">Grocery</Link>
-            </li>
+          </li>
+          <li>
+            <Link to="/grocery">Grocery</Link>
           </li>
           <li>Cart</li>
           <button
